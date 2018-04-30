@@ -1,0 +1,5 @@
+{
+  "AppName": "api/config/appName",
+  "AppRoot": "api/",
+  "ServiceStatuses": "api/config/serviceStatuses"
+}
