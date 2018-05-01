@@ -13,6 +13,7 @@ export interface Service {
 
 export enum Status {
   Initiated,
+  Accepted,
   Rejected,
-  Finished
+  Done
 }

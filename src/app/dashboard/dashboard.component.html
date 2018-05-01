@@ -1,0 +1,78 @@
+<nav class="navbar navbar-light bg-light">
+  <span class="display-4">Professions</span>
+  <button type="button" class="btn btn-success" (click)="createProfessionalModal.show()">
+    <i class="fa fa-plus-circle"></i> Add</button>
+</nav>
+<table class="table table-hover">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Profession</th>
+    <th scope="col">Category</th>
+    <th scope="col">Description</th>
+    <th scope="col">Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let profession of professions; let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ profession.title }}</td>
+      <td>{{ profession.category }}</td>
+      <td>{{ profession.description }}</td>
+      <td>
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+          <div class="btn-group btn-group-sm mr-2" role="group" aria-label="Actions group">
+            <button type="button" class="btn btn-outline-warning">Edit</button>
+            <button type="button" class="btn btn-outline-danger">Delete</button>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div bsModal #createProfessionalModal="bs-modal" class="modal fade" tabindex="-1"
+     role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-sizes-name1" class="modal-title pull-left">Create new profession</h4>
+        <button type="button" class="close pull-right" (click)="createProfessionalModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group row">
+            <label for="professionTitle" class="col-sm-2 col-form-label">Title</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="professionTitle" placeholder="Profession title">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="professionCategory" class="col-sm-2 col-form-label">Category</label>
+            <div class="col-sm-10">
+              <select class="custom-select" id="professionCategory">
+                <option selected>Choose...</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="professionDescription" class="col-sm-2 col-form-label">Description</label>
+            <div class="col-sm-10">
+              <textarea class="form-control" id="professionDescription" placeholder="Profession description" [rows]="3"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

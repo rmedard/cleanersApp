@@ -1,8 +1,10 @@
-import {Address} from './address';
+import {User} from './user';
+import {Person} from './person';
+import {Expertise} from './expertise';
 
-export interface Professional {
+export interface Professional extends Person {
   id: number;
-  firstName: string;
-  lastName: string;
-  address: Address;
+  regNumber: string;
+  expertises: Expertise[];
+  user: User;
 }

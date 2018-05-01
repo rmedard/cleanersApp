@@ -13,6 +13,10 @@ import {appRoutes} from './routes';
 import {ServiceCardComponent} from './services/service-card/service-card.component';
 import {ServiceListComponent} from './services/service-list/service-list.component';
 import {HttpClientModule} from '@angular/common/http';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import {ProfessionsService} from './+services/professions.service';
+import {ProfessionalsService} from './+services/professionals.service';
+import {ModalModule} from 'ngx-bootstrap';
 
 
 @NgModule({
@@ -24,12 +28,19 @@ import {HttpClientModule} from '@angular/common/http';
     CustomerCardComponent,
     CustomerListComponent,
     ServiceCardComponent,
-    ServiceListComponent
+    ServiceListComponent,
+    DashboardComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule, AngularFontAwesomeModule, RouterModule.forRoot(appRoutes)
+    BrowserModule,
+    HttpClientModule,
+    AngularFontAwesomeModule,
+    RouterModule.forRoot(appRoutes),
+    ModalModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    ProfessionsService, ProfessionalsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
