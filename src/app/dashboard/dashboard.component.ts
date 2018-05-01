@@ -1,7 +1,6 @@
-import {Component, OnInit, TemplateRef} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Profession} from '../+models/profession';
 import {ProfessionsService} from '../+services/professions.service';
-import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,18 +9,32 @@ import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 })
 export class DashboardComponent implements OnInit {
 
-  modalRef: BsModalRef;
   professions: Profession[];
 
-  constructor(private professionsService: ProfessionsService, private modalService: BsModalService) { }
+  alerts: any[] = [];
+
+  constructor(private professionsService: ProfessionsService) { }
 
   ngOnInit() {
     this.professionsService.getProfessions().subscribe(
       data => {
         this.professions = data as Profession[];
-      }, error => console.log(error),
+        },
+        error => {
+        console.log(error);
+        this.alerts.push(
+          {
+            type: 'danger',
+            msg: error.message,
+            dismissible: true
+          }
+        );
+      },
       () => console.log('Done loading professions')
     );
   }
 
+  onClosed(dismissedAlert: DashboardComponent): void {
+    this.alerts = this.alerts.filter(alert => alert !== dismissedAlert);
+  }
 }

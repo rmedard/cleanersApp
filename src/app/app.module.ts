@@ -16,7 +16,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {ProfessionsService} from './+services/professions.service';
 import {ProfessionalsService} from './+services/professionals.service';
-import {ModalModule} from 'ngx-bootstrap';
+import {AlertModule, ModalModule} from 'ngx-bootstrap';
 
 
 @NgModule({
@@ -36,7 +36,8 @@ import {ModalModule} from 'ngx-bootstrap';
     HttpClientModule,
     AngularFontAwesomeModule,
     RouterModule.forRoot(appRoutes),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    AlertModule.forRoot()
   ],
   providers: [
     ProfessionsService, ProfessionalsService
