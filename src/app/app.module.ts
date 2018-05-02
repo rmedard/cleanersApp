@@ -17,6 +17,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {ProfessionsService} from './+services/professions.service';
 import {ProfessionalsService} from './+services/professionals.service';
 import {AlertModule, ModalModule} from 'ngx-bootstrap';
+import {NgModel} from '@angular/forms';
 
 
 @NgModule({
@@ -37,7 +38,7 @@ import {AlertModule, ModalModule} from 'ngx-bootstrap';
     AngularFontAwesomeModule,
     RouterModule.forRoot(appRoutes),
     ModalModule.forRoot(),
-    AlertModule.forRoot()
+    AlertModule.forRoot(), NgModel
   ],
   providers: [
     ProfessionsService, ProfessionalsService

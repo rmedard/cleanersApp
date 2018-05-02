@@ -6,8 +6,8 @@ export interface Profession {
 }
 
 export enum Category {
-  Bricolage,
-  Construction,
-  Cleaning,
-  BabySitting
+  Bricolage = 0,
+  Construction = 1,
+  Cleaning = 2,
+  BabySitting = 3
 }
