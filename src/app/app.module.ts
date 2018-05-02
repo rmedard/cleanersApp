@@ -13,11 +13,11 @@ import {appRoutes} from './routes';
 import {ServiceCardComponent} from './services/service-card/service-card.component';
 import {ServiceListComponent} from './services/service-list/service-list.component';
 import {HttpClientModule} from '@angular/common/http';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
 import {ProfessionsService} from './+services/professions.service';
 import {ProfessionalsService} from './+services/professionals.service';
 import {AlertModule, ModalModule} from 'ngx-bootstrap';
-import {NgModel} from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -38,7 +38,7 @@ import {NgModel} from '@angular/forms';
     AngularFontAwesomeModule,
     RouterModule.forRoot(appRoutes),
     ModalModule.forRoot(),
-    AlertModule.forRoot(), NgModel
+    AlertModule.forRoot(), FormsModule
   ],
   providers: [
     ProfessionsService, ProfessionalsService

@@ -46,18 +46,20 @@
         </button>
       </div>
       <div class="modal-body">
-        <form #f="ngForm" (ngSubmit)="onCreateProfession(f)">
+        <form #professionForm="ngForm" id="professionForm" (ngSubmit)="onCreateProfession()">
           <div class="form-group row">
             <label for="professionTitle" class="col-sm-2 col-form-label">Title</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="professionTitle" placeholder="Profession title" [name]="title">
+              <input type="text" class="form-control" id="professionTitle"
+                     placeholder="Profession title"
+                     [(ngModel)]="newProfession.title"
+                     name="title" required>
             </div>
           </div>
           <div class="form-group row">
             <label for="professionCategory" class="col-sm-2 col-form-label">Category</label>
             <div class="col-sm-10">
-              <select class="custom-select" id="professionCategory" [name]="category">
-                <option selected>Choose...</option>
+              <select class="custom-select" id="professionCategory" [(ngModel)]="newProfession.category" name="category">
                 <option *ngFor="let option of professionCategories" [value]="option">{{option}}</option>
               </select>
             </div>
@@ -66,7 +68,8 @@
             <label for="professionDescription" class="col-sm-2 col-form-label">Description</label>
             <div class="col-sm-10">
               <textarea class="form-control" id="professionDescription"
-                        placeholder="Profession description" [rows]="3" [name]="description"></textarea>
+                        placeholder="Profession description" [rows]="3"
+                        [(ngModel)]="newProfession.description" name="description"></textarea>
             </div>
           </div>
           <div class="form-group row">

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../environments/environment';
+import {Profession} from '../+models/profession';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -17,4 +18,7 @@ export class ProfessionsService {
     return this.http.get(this.baseUrl + '/professions');
   }
 
+  createProfession(profession: Profession) {
+    return this.http.post<Profession>(this.baseUrl + '/professions', profession, httpOptions);
+  }
 }
