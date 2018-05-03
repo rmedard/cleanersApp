@@ -2,10 +2,48 @@
   <alert [type]="alert.type" [dismissible]="alert.dismissible" (onClosed)="onClosed(alert)">{{ alert.msg }}</alert>
 </div>
 
+<form [formGroup]="professionForm" (ngSubmit)="onCreateProfession()">
+  <div class="card">
+    <div class="card-header">Create new profession</div>
+    <div class="card-body">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="professionTitle" class="col-form-label">Title</label>
+          <!--<div class="col-sm-10">-->
+            <input type="text" class="form-control" id="professionTitle"
+                   placeholder="Profession title"
+                   formControlName="title">
+          <!--</div>-->
+        </div>
+        <div class="form-group col-md-6">
+          <label for="professionCategory" class="col-form-label">Category</label>
+          <!--<div class="col-sm-10">-->
+            <select class="custom-select" id="professionCategory" formControlName="category">
+              <option *ngFor="let option of professionCategories" [value]="option">{{option}}</option>
+            </select>
+          <!--</div>-->
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="professionDescription" class="col-form-label">Description</label>
+        <!--<div class="col-sm-10">-->
+              <textarea class="form-control" id="professionDescription"
+                        placeholder="Profession description" [rows]="3"
+                        formControlName="description"></textarea>
+        <!--</div>-->
+      </div>
+    </div>
+    <div class="card-footer">
+      <button type="submit" class="btn btn-primary" [disabled]="!professionForm.valid">Save</button>
+    </div>
+  </div>
+</form>
+
 <nav class="navbar navbar-light bg-light">
   <span class="display-4">Professions</span>
-  <button type="button" class="btn btn-success" (click)="createProfessionalModal.show()">
-    <i class="fa fa-plus-circle"></i> Add</button>
+  <button type="button" class="btn btn-success">
+    <i class="fa fa-plus-circle"></i> Add
+  </button>
 </nav>
 <table class="table table-hover">
   <thead class="thead-dark">
@@ -18,67 +56,20 @@
   </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let profession of professions; let i = index">
-      <th scope="row">{{ i + 1 }}</th>
-      <td>{{ profession.title }}</td>
-      <td>{{ profession.category }}</td>
-      <td>{{ profession.description }}</td>
-      <td>
-        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-          <div class="btn-group btn-group-sm mr-2" role="group" aria-label="Actions group">
-            <button type="button" class="btn btn-outline-warning">Edit</button>
-            <button type="button" class="btn btn-outline-danger">Delete</button>
-          </div>
+  <tr *ngFor="let profession of professions; let i = index">
+    <th scope="row">{{ i + 1 }}</th>
+    <td>{{ profession.title }}</td>
+    <td>{{ profession.category }}</td>
+    <td>{{ profession.description }}</td>
+    <td>
+      <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group btn-group-sm mr-2" role="group" aria-label="Actions group">
+          <button type="button" class="btn btn-outline-success">View</button>
+          <button type="button" class="btn btn-outline-warning">Edit</button>
+          <button type="button" class="btn btn-outline-danger">Delete</button>
         </div>
-      </td>
-    </tr>
+      </div>
+    </td>
+  </tr>
   </tbody>
 </table>
-
-<div bsModal #createProfessionalModal="bs-modal" class="modal fade" tabindex="-1"
-     role="dialog" aria-labelledby="dialog-sizes-name1">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 id="dialog-sizes-name1" class="modal-title pull-left">Create new profession</h4>
-        <button type="button" class="close pull-right" (click)="createProfessionalModal.hide()" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form #professionForm="ngForm" id="professionForm" (ngSubmit)="onCreateProfession()">
-          <div class="form-group row">
-            <label for="professionTitle" class="col-sm-2 col-form-label">Title</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="professionTitle"
-                     placeholder="Profession title"
-                     [(ngModel)]="newProfession.title"
-                     name="title" required>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="professionCategory" class="col-sm-2 col-form-label">Category</label>
-            <div class="col-sm-10">
-              <select class="custom-select" id="professionCategory" [(ngModel)]="newProfession.category" name="category">
-                <option *ngFor="let option of professionCategories" [value]="option">{{option}}</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="professionDescription" class="col-sm-2 col-form-label">Description</label>
-            <div class="col-sm-10">
-              <textarea class="form-control" id="professionDescription"
-                        placeholder="Profession description" [rows]="3"
-                        [(ngModel)]="newProfession.description" name="description"></textarea>
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-sm-10">
-              <button type="submit" class="btn btn-primary">Save</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
