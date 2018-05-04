@@ -9,7 +9,8 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 export const appRoutes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
-  {path: 'dashboard', component: DashboardComponent, children: [
+  {path: '', children: [
+      {path: 'dashboard', component: DashboardComponent},
       {path: 'professions', component: ProfessionsComponent},
       {path: 'professionals', component: ProfessionalListComponent},
       {path: 'customers', component: CustomerListComponent},
