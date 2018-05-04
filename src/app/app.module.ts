@@ -13,11 +13,14 @@ import {appRoutes} from './routes';
 import {ServiceCardComponent} from './services/service-card/service-card.component';
 import {ServiceListComponent} from './services/service-list/service-list.component';
 import {HttpClientModule} from '@angular/common/http';
-import {DashboardComponent} from './dashboard/dashboard.component';
+import {ProfessionsComponent} from './professions/professions.component';
 import {ProfessionsService} from './+services/professions.service';
 import {ProfessionalsService} from './+services/professionals.service';
 import {AlertModule, ModalModule} from 'ngx-bootstrap';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HomeComponent } from './home/home.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { TopBarComponent } from './+menus/top-bar/top-bar.component';
 
 
 @NgModule({
@@ -30,7 +33,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     CustomerListComponent,
     ServiceCardComponent,
     ServiceListComponent,
-    DashboardComponent
+    ProfessionsComponent,
+    HomeComponent,
+    DashboardComponent,
+    TopBarComponent
   ],
   imports: [
     BrowserModule,
