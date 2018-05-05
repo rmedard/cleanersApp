@@ -16,11 +16,15 @@ import {HttpClientModule} from '@angular/common/http';
 import {ProfessionsComponent} from './professions/professions.component';
 import {ProfessionsService} from './+services/professions.service';
 import {ProfessionalsService} from './+services/professionals.service';
-import {AlertModule, ModalModule} from 'ngx-bootstrap';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { HomeComponent } from './home/home.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { TopBarComponent } from './+menus/top-bar/top-bar.component';
+import {AlertModule, CarouselModule, CollapseModule, ModalModule} from 'ngx-bootstrap';
+import {ReactiveFormsModule} from '@angular/forms';
+import {HomeComponent} from './static/home/home.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {TopBarComponent} from './+menus/top-bar/top-bar.component';
+import {AboutComponent} from './static/about/about.component';
+import {ContactComponent} from './static/contact/contact.component';
+import { NavigationBarComponent } from './static/layout/navigation-bar/navigation-bar.component';
+import { FooterComponent } from './static/layout/footer/footer.component';
 
 
 @NgModule({
@@ -36,7 +40,11 @@ import { TopBarComponent } from './+menus/top-bar/top-bar.component';
     ProfessionsComponent,
     HomeComponent,
     DashboardComponent,
-    TopBarComponent
+    TopBarComponent,
+    AboutComponent,
+    ContactComponent,
+    NavigationBarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +52,7 @@ import { TopBarComponent } from './+menus/top-bar/top-bar.component';
     AngularFontAwesomeModule,
     RouterModule.forRoot(appRoutes),
     ModalModule.forRoot(),
-    AlertModule.forRoot(), FormsModule, ReactiveFormsModule
+    AlertModule.forRoot(), ReactiveFormsModule, CarouselModule.forRoot(), CollapseModule.forRoot()
   ],
   providers: [
     ProfessionsService, ProfessionalsService

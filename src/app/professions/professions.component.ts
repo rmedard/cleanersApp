@@ -14,6 +14,7 @@ export class ProfessionsComponent implements OnInit {
   professionCategories: string[];
 
   professionForm: FormGroup;
+  isCollapsed = true;
 
   alerts: any[] = [];
 

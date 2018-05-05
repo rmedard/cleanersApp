@@ -1,0 +1,11 @@
+.home-content {
+  padding-top: 46px;
+}
+.main-slider-img {
+  display: block;
+  height: 334px;
+  width: auto;
+}
+.carousel-caption{
+  background: rgba(15, 15, 15, 0.6);
+}

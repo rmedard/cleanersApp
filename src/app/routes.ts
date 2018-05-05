@@ -3,12 +3,16 @@ import {ProfessionalListComponent} from './professionals/professional-list/profe
 import {CustomerListComponent} from './customers/customer-list/customer-list.component';
 import {ServiceListComponent} from './services/service-list/service-list.component';
 import {ProfessionsComponent} from './professions/professions.component';
-import {HomeComponent} from './home/home.component';
+import {HomeComponent} from './static/home/home.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
+import {AboutComponent} from './static/about/about.component';
+import {ContactComponent} from './static/contact/contact.component';
 
 export const appRoutes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
+  {path: 'about', component: AboutComponent},
+  {path: 'contact', component: ContactComponent},
   {path: '', children: [
       {path: 'dashboard', component: DashboardComponent},
       {path: 'professions', component: ProfessionsComponent},

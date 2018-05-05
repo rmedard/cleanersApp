@@ -10,7 +10,7 @@
         <alert [type]="alert.type" [dismissible]="alert.dismissible" (onClosed)="onClosed(alert)">{{ alert.msg }}</alert>
       </div>
 
-      <form [formGroup]="professionForm" (ngSubmit)="onCreateProfession()">
+      <form [formGroup]="professionForm" (ngSubmit)="onCreateProfession()" [collapse]="isCollapsed">
         <div class="card">
           <div class="card-header">Create new profession</div>
           <div class="card-body">
@@ -47,40 +47,42 @@
         </div>
       </form>
 
-      <nav class="navbar navbar-light bg-light">
-        <span class="display-4">Professions</span>
-        <button type="button" class="btn btn-success">
-          <i class="fa fa-plus-circle"></i> Add
-        </button>
-      </nav>
-      <table class="table table-hover">
-        <thead class="thead-dark">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Profession</th>
-          <th scope="col">Category</th>
-          <th scope="col">Description</th>
-          <th scope="col">Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let profession of professions; let i = index">
-          <th scope="row">{{ i + 1 }}</th>
-          <td>{{ profession.title }}</td>
-          <td>{{ profession.category }}</td>
-          <td>{{ profession.description }}</td>
-          <td>
-            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-              <div class="btn-group btn-group-sm mr-2" role="group" aria-label="Actions group">
-                <button type="button" class="btn btn-outline-success">View</button>
-                <button type="button" class="btn btn-outline-warning">Edit</button>
-                <button type="button" class="btn btn-outline-danger">Delete</button>
+      <div class="main-content">
+        <nav class="navbar navbar-light bg-light">
+          <span class="display-4">Professions</span>
+          <button type="button" class="btn btn-success" (click)="isCollapsed = !isCollapsed">
+            <i class="fa fa-plus-circle"></i> Add
+          </button>
+        </nav>
+        <table class="table table-hover">
+          <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Profession</th>
+            <th scope="col">Category</th>
+            <th scope="col">Description</th>
+            <th scope="col">Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let profession of professions; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ profession.title }}</td>
+            <td>{{ profession.category }}</td>
+            <td>{{ profession.description }}</td>
+            <td>
+              <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group btn-group-sm mr-2" role="group" aria-label="Actions group">
+                  <button type="button" class="btn btn-outline-success">View</button>
+                  <button type="button" class="btn btn-outline-warning">Edit</button>
+                  <button type="button" class="btn btn-outline-danger">Delete</button>
+                </div>
               </div>
-            </div>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </main>
   </div>
 </div>
