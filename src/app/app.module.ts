@@ -25,6 +25,7 @@ import {AboutComponent} from './static/about/about.component';
 import {ContactComponent} from './static/contact/contact.component';
 import { NavigationBarComponent } from './static/layout/navigation-bar/navigation-bar.component';
 import { FooterComponent } from './static/layout/footer/footer.component';
+import {EmailsService} from './+services/emails.service';
 
 
 @NgModule({
@@ -55,7 +56,7 @@ import { FooterComponent } from './static/layout/footer/footer.component';
     AlertModule.forRoot(), ReactiveFormsModule, CarouselModule.forRoot(), CollapseModule.forRoot()
   ],
   providers: [
-    ProfessionsService, ProfessionalsService
+    ProfessionsService, ProfessionalsService, EmailsService
   ],
   bootstrap: [AppComponent]
 })
