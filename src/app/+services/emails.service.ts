@@ -17,5 +17,4 @@ export class EmailsService {
   sendEmail(email: Email) {
     return this.http.post(this.baseUrl + '/mails', email, httpOptions);
   }
-
 }
