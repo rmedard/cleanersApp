@@ -1,0 +1,8 @@
+div.overview-cards > div > div.card > div.card-footer > a {
+  text-decoration: none;
+  color: white;
+}
+
+div.overview-card {
+  margin-bottom: 10px;
+}

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Email} from '../+models/email';
@@ -12,9 +12,14 @@ export class EmailsService {
 
   baseUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   sendEmail(email: Email) {
     return this.http.post(this.baseUrl + '/mails', email, httpOptions);
+  }
+
+  getEmails() {
+    return this.http.get<Email[]>(this.baseUrl + '/mails');
   }
 }

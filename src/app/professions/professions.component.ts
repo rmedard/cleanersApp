@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Category, Profession} from '../+models/profession';
 import {ProfessionsService} from '../+services/professions.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import * as _ from 'underscore';
 
 @Component({
   selector: 'app-professions',
@@ -34,7 +35,6 @@ export class ProfessionsComponent implements OnInit {
         this.professions = data as Profession[];
       },
       error => {
-        console.log(error);
         this.alerts.push(
           {
             type: 'danger',
@@ -52,7 +52,7 @@ export class ProfessionsComponent implements OnInit {
   }
 
   onCreateProfession() {
-    const profession: Profession = this.mapProfession();
+    const profession: Profession = this.formModelToProfession();
     this.professionsService.createProfession(profession).subscribe(
       data => {
         this.professions.push(data as Profession);
@@ -74,12 +74,26 @@ export class ProfessionsComponent implements OnInit {
     );
   }
 
-  private mapProfession() {
+  editProfession(id: number) {
+    const selected = _.findWhere(this.professions, {'id': id}) as Profession;
+    this.professionForm.setValue(this.professionToFormModel(selected));
+    this.isCollapsed = false;
+  }
+
+  private formModelToProfession() {
     const professionModel = this.professionForm.value;
     return {
       title: professionModel.title,
       category: professionModel.category,
       description: professionModel.description
     } as Profession;
+  }
+
+  private professionToFormModel(profession: Profession) {
+    return {
+      title: profession.title,
+      category: profession.category,
+      description: profession.description ? profession.description : ''
+    };
   }
 }
