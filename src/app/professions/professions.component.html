@@ -11,6 +11,7 @@
       </div>
 
       <form [formGroup]="professionForm" (ngSubmit)="onCreateProfession()" [collapse]="isCollapsed">
+        <input type="hidden" formControlName="title">
         <div class="card">
           <div class="card-header">Create new profession</div>
           <div class="card-body">
@@ -50,7 +51,7 @@
       <div class="main-content">
         <nav class="navbar navbar-light bg-light">
           <span class="display-4">Professions</span>
-          <button type="button" class="btn btn-success" (click)="isCollapsed = !isCollapsed">
+          <button type="button" class="btn btn-success" (click)="onAddClick()">
             <i class="fa fa-plus-circle"></i> Add
           </button>
         </nav>

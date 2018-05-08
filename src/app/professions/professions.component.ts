@@ -24,6 +24,7 @@ export class ProfessionsComponent implements OnInit {
 
   ngOnInit() {
     this.professionForm = this.formBuilder.group({
+      id: [''],
       title: ['', Validators.required],
       category: ['', Validators.required],
       description: ['']
@@ -53,25 +54,56 @@ export class ProfessionsComponent implements OnInit {
 
   onCreateProfession() {
     const profession: Profession = this.formModelToProfession();
-    this.professionsService.createProfession(profession).subscribe(
-      data => {
-        this.professions.push(data as Profession);
-        this.professionForm.reset();
-        this.alerts.push({
-          type: 'success',
-          msg: 'A new profession created successfully',
-          dismissible: true
-        });
-      }, error => {
-        this.alerts.push(
-          {
-            type: 'danger',
-            msg: error.message,
+    if (profession.id) {
+      this.professionsService.updateProfession(profession, profession.id).subscribe(
+        () => {
+          const toUpdate = _.findWhere(this.professions, {'id': profession.id}) as Profession;
+          const index = this.professions.indexOf(toUpdate);
+          this.professions[index] = profession;
+          this.alerts.push({
+            type: 'success',
+            msg: 'Profession updated successfully',
             dismissible: true
-          }
-        );
-      }
-    );
+          });
+        }, error => {
+          this.alerts.push(
+            {
+              type: 'danger',
+              msg: error.message,
+              dismissible: true
+            }
+          );
+        }
+
+      );
+    } else {
+      this.professionsService.createProfession(profession).subscribe(
+        data => {
+          this.professions.push(data as Profession);
+          this.professionForm.reset();
+          this.alerts.push({
+            type: 'success',
+            msg: 'A new profession created successfully',
+            dismissible: true
+          });
+        }, error => {
+          this.alerts.push(
+            {
+              type: 'danger',
+              msg: error.message,
+              dismissible: true
+            }
+          );
+        }
+      );
+    }
+  }
+
+  onAddClick() {
+    this.professionForm.reset();
+    if (this.isCollapsed) {
+      this.isCollapsed = false;
+    }
   }
 
   editProfession(id: number) {
@@ -83,6 +115,7 @@ export class ProfessionsComponent implements OnInit {
   private formModelToProfession() {
     const professionModel = this.professionForm.value;
     return {
+      id: professionModel.id,
       title: professionModel.title,
       category: professionModel.category,
       description: professionModel.description
@@ -91,6 +124,7 @@ export class ProfessionsComponent implements OnInit {
 
   private professionToFormModel(profession: Profession) {
     return {
+      id: profession.id,
       title: profession.title,
       category: profession.category,
       description: profession.description ? profession.description : ''

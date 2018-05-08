@@ -21,4 +21,8 @@ export class ProfessionsService {
   createProfession(profession: Profession) {
     return this.http.post<Profession>(this.baseUrl + '/professions', profession, httpOptions);
   }
+
+  updateProfession(profession: Profession, id: number) {
+    return this.http.put(this.baseUrl + '/professions/' + id, profession, httpOptions);
+  }
 }

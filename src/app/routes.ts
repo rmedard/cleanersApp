@@ -7,18 +7,25 @@ import {HomeComponent} from './static/home/home.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {AboutComponent} from './static/about/about.component';
 import {ContactComponent} from './static/contact/contact.component';
+import {ProfessionalCardComponent} from './professionals/professional-card/professional-card.component';
 
 export const appRoutes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'about', component: AboutComponent},
   {path: 'contact', component: ContactComponent},
-  {path: '', children: [
+  {
+    path: '', children: [
       {path: 'dashboard', component: DashboardComponent},
       {path: 'professions', component: ProfessionsComponent},
-      {path: 'professionals', component: ProfessionalListComponent},
+      {
+        path: 'professionals', component: ProfessionalListComponent, children: [
+          {path: ':id', component: ProfessionalCardComponent}
+        ]
+      },
       {path: 'customers', component: CustomerListComponent},
       {path: 'services', component: ServiceListComponent},
-    ]},
+    ]
+  },
   {path: '**', component: HomeComponent}
 ];
