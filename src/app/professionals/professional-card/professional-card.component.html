@@ -43,7 +43,7 @@
         <div class="col-md-9">
           <nav class="navbar navbar-light bg-light">
             <span class="display-4">Expertise</span>
-            <button type="button" class="btn btn-success"><i class="fa fa-plus-circle"></i> Add</button>
+            <button type="button" class="btn btn-success" (click)="openModal(false, template, null)"><i class="fa fa-plus-circle"></i> Add</button>
           </nav>
           <table class="table table-hover">
             <thead class="thead-dark">
@@ -62,7 +62,7 @@
               <td>{{ expertise.profession.category }}</td>
               <td>{{ expertise.unitPrice }} Euro</td>
               <td>
-                <a [routerLink]="" class="btn btn-outline-warning">Edit</a>
+                <button type="button" class="btn btn-outline-warning" (click)="openModal(true, template, expertise)">Edit</button>
               </td>
             </tr>
             </tbody>
@@ -90,3 +90,35 @@
     </main>
   </div>
 </div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Expertise</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="expertiseModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="expertiseForm" (ngSubmit)="onCreateExpertise()">
+      <div class="form-group row">
+        <label for="professionTitle" class="col-form-label col-sm-3">Profession</label>
+        <div class="input-group col-sm-9">
+          <select class="custom-select" id="professionTitle" formControlName="professionId" [disabled]="expertiseForm.controls['editMode']">
+            <option *ngFor="let profession of professions" [value]="profession.id">{{profession.title}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="expertiseRate" class="col-form-label col-sm-3">Rate</label>
+        <div class="input-group col-sm-9">
+          <input type="text" class="form-control" id="expertiseRate"
+                 formControlName="rate">
+          <div class="input-group-append">
+            <span class="input-group-text">€</span>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!expertiseForm.valid">Save</button>
+    </form>
+  </div>
+</ng-template>

@@ -15,7 +15,7 @@ export class ProfessionsService {
   constructor(private http: HttpClient) { }
 
   getProfessions() {
-    return this.http.get(this.baseUrl + '/professions');
+    return this.http.get<Profession[]>(this.baseUrl + '/professions');
   }
 
   createProfession(profession: Profession) {
