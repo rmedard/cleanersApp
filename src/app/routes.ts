@@ -8,6 +8,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {AboutComponent} from './static/about/about.component';
 import {ContactComponent} from './static/contact/contact.component';
 import {ProfessionalCardComponent} from './professionals/professional-card/professional-card.component';
+import {ProfessionalDetailResolver} from './+resolvers/professional-detail-resolver';
 
 export const appRoutes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -18,11 +19,8 @@ export const appRoutes: Routes = [
     path: '', children: [
       {path: 'dashboard', component: DashboardComponent},
       {path: 'professions', component: ProfessionsComponent},
-      {
-        path: 'professionals', component: ProfessionalListComponent, children: [
-          {path: ':id', component: ProfessionalCardComponent}
-        ]
-      },
+      {path: 'professionals', component: ProfessionalListComponent},
+      {path: 'professionals/:id', component: ProfessionalCardComponent, resolve: {professional: ProfessionalDetailResolver}},
       {path: 'customers', component: CustomerListComponent},
       {path: 'services', component: ServiceListComponent},
     ]

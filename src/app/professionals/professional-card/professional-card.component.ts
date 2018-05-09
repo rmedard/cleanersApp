@@ -1,5 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Professional} from '../../+models/professional';
+import {ProfessionalListComponent} from '../professional-list/professional-list.component';
+import {ActivatedRoute} from '@angular/router';
+import {ProfessionalsService} from '../../+services/professionals.service';
 
 @Component({
   selector: 'app-professional-card',
@@ -8,11 +11,20 @@ import {Professional} from '../../+models/professional';
 })
 export class ProfessionalCardComponent implements OnInit {
 
-  @Input() professional: Professional;
+  professional: Professional;
+  alerts: any[] = [];
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private professionalsService: ProfessionalsService) {
 
-  ngOnInit() {
   }
 
+  ngOnInit() {
+    this.route.data.subscribe(data => {
+      this.professional = data['professional'];
+    });
+  }
+
+  onClosed(dismissedAlert: ProfessionalListComponent): void {
+    this.alerts = this.alerts.filter(alert => alert !== dismissedAlert);
+  }
 }
