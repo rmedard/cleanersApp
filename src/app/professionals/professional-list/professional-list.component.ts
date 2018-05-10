@@ -30,7 +30,7 @@ export class ProfessionalListComponent implements OnInit {
 
     this.professionalsService.getProfessionals().subscribe(
       data => {
-        this.professionals = data as Professional[];
+        this.professionals = data;
       }, error => console.log(error),
       () => console.log('Done loading professionals')
     );

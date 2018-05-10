@@ -103,8 +103,8 @@
       <div class="form-group row">
         <label for="professionTitle" class="col-form-label col-sm-3">Profession</label>
         <div class="input-group col-sm-9">
-          <select class="custom-select" id="professionTitle" formControlName="professionId" [disabled]="expertiseForm.controls['editMode']">
-            <option *ngFor="let profession of professions" [value]="profession.id">{{profession.title}}</option>
+          <select class="custom-select" id="professionTitle" formControlName="professionId" readonly>
+            <option *ngFor="let profession of dropDownProfessions" [value]="profession.id">{{profession.title}}</option>
           </select>
         </div>
       </div>

@@ -42,43 +42,31 @@
 
   <!-- Content Row -->
   <div class="row">
-    <div class="col-md-4 mb-4">
-      <div class="card h-100">
-        <div class="card-body">
-          <h2 class="card-title">Card One</h2>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
-        </div>
-        <div class="card-footer">
-          <a href="#" class="btn btn-primary">More Info</a>
-        </div>
-      </div>
-    </div>
-    <!-- /.col-md-4 -->
-    <div class="col-md-4 mb-4">
-      <div class="card h-100">
-        <div class="card-body">
-          <h2 class="card-title">Card Two</h2>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod tenetur ex natus at dolorem enim! Nesciunt pariatur voluptatem sunt quam eaque, vel, non in id dolore voluptates quos eligendi labore.</p>
-        </div>
-        <div class="card-footer">
-          <a href="#" class="btn btn-primary">More Info</a>
-        </div>
-      </div>
-    </div>
-    <!-- /.col-md-4 -->
-    <div class="col-md-4 mb-4">
-      <div class="card h-100">
-        <div class="card-body">
-          <h2 class="card-title">Card Three</h2>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
-        </div>
-        <div class="card-footer">
-          <a href="#" class="btn btn-primary">More Info</a>
-        </div>
-      </div>
-    </div>
-    <!-- /.col-md-4 -->
+      <div class="col-md-4" *ngFor="let professional of professionals">
+        <div class="card">
+          <img class="card-img-top" src="../../../assets/unknown.png" alt="Card image cap">
+          <div class="card-body">
+            <h2 class="card-title text-center">{{professional.lastName}}, {{professional.firstName}}</h2>
+            <dl class="row">
+              <dt class="col-sm-3">N°: </dt>
+              <dd class="col-sm-9">{{professional.regNumber}}</dd>
 
+              <dt class="col-sm-3">Tel: </dt>
+              <dd class="col-sm-9">{{professional.phone}}</dd>
+
+              <dt class="col-sm-4">Secteur: </dt>
+              <dd class="col-sm-8">
+                <ul>
+                  <li *ngFor="let category of getActivitySectors(professional)">{{category}}</li>
+                </ul>
+              </dd>
+            </dl>
+          </div>
+          <div class="card-footer text-right">
+            <a [routerLink]="['/professionals']">Mode details <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+      </div>
   </div>
   <!-- /.row -->
 

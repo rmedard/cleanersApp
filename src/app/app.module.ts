@@ -27,6 +27,8 @@ import { NavigationBarComponent } from './static/layout/navigation-bar/navigatio
 import { FooterComponent } from './static/layout/footer/footer.component';
 import {EmailsService} from './+services/emails.service';
 import {ProfessionalDetailResolver} from './+resolvers/professional-detail-resolver';
+import { ProfessionalRegisterComponent } from './static/register/professional-register/professional-register.component';
+import { CustomerRegisterComponent } from './static/register/customer-register/customer-register.component';
 
 
 @NgModule({
@@ -46,7 +48,9 @@ import {ProfessionalDetailResolver} from './+resolvers/professional-detail-resol
     AboutComponent,
     ContactComponent,
     NavigationBarComponent,
-    FooterComponent
+    FooterComponent,
+    ProfessionalRegisterComponent,
+    CustomerRegisterComponent
   ],
   imports: [
     BrowserModule,

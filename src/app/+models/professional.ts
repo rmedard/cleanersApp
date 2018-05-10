@@ -4,7 +4,7 @@ import {Expertise} from './expertise';
 
 export interface Professional extends Person {
   id: number;
-  regNumber: string;
+  regNumber?: string;
   expertises?: Expertise[];
   user: User;
 }
