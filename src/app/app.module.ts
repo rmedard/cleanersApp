@@ -16,8 +16,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {ProfessionsComponent} from './professions/professions.component';
 import {ProfessionsService} from './+services/professions.service';
 import {ProfessionalsService} from './+services/professionals.service';
-import {AlertModule, CarouselModule, CollapseModule, ModalModule} from 'ngx-bootstrap';
-import {ReactiveFormsModule} from '@angular/forms';
+import {AlertModule, ButtonsModule, CarouselModule, CollapseModule, ModalModule} from 'ngx-bootstrap';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HomeComponent} from './static/home/home.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {TopBarComponent} from './+menus/top-bar/top-bar.component';
@@ -27,8 +27,9 @@ import { NavigationBarComponent } from './static/layout/navigation-bar/navigatio
 import { FooterComponent } from './static/layout/footer/footer.component';
 import {EmailsService} from './+services/emails.service';
 import {ProfessionalDetailResolver} from './+resolvers/professional-detail-resolver';
-import { ProfessionalRegisterComponent } from './static/register/professional-register/professional-register.component';
-import { CustomerRegisterComponent } from './static/register/customer-register/customer-register.component';
+import { RegisterComponent } from './static/register/register/register.component';
+import {GooglePlaceModule} from 'ngx-google-places-autocomplete';
+import {CustomersService} from './+services/customers.service';
 
 
 @NgModule({
@@ -49,8 +50,7 @@ import { CustomerRegisterComponent } from './static/register/customer-register/c
     ContactComponent,
     NavigationBarComponent,
     FooterComponent,
-    ProfessionalRegisterComponent,
-    CustomerRegisterComponent
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,12 +58,16 @@ import { CustomerRegisterComponent } from './static/register/customer-register/c
     AngularFontAwesomeModule,
     RouterModule.forRoot(appRoutes),
     ModalModule.forRoot(),
-    AlertModule.forRoot(), ReactiveFormsModule, CarouselModule.forRoot(), CollapseModule.forRoot()
+    AlertModule.forRoot(), ReactiveFormsModule, FormsModule,
+    CarouselModule.forRoot(), CollapseModule.forRoot(),
+    ButtonsModule.forRoot(),
+    GooglePlaceModule
   ],
   providers: [
     ProfessionsService,
     ProfessionalsService,
     EmailsService,
+    CustomersService,
     ProfessionalDetailResolver
   ],
   bootstrap: [AppComponent]

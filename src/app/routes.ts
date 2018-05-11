@@ -9,8 +9,7 @@ import {AboutComponent} from './static/about/about.component';
 import {ContactComponent} from './static/contact/contact.component';
 import {ProfessionalCardComponent} from './professionals/professional-card/professional-card.component';
 import {ProfessionalDetailResolver} from './+resolvers/professional-detail-resolver';
-import {ProfessionalRegisterComponent} from './static/register/professional-register/professional-register.component';
-import {CustomerRegisterComponent} from './static/register/customer-register/customer-register.component';
+import {RegisterComponent} from './static/register/register/register.component';
 
 export const appRoutes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -27,7 +26,6 @@ export const appRoutes: Routes = [
       {path: 'services', component: ServiceListComponent},
     ]
   },
-  {path: 'register-professional', component: ProfessionalRegisterComponent},
-  {path: 'register-customer', component: CustomerRegisterComponent},
+  {path: 'register', component: RegisterComponent},
   {path: '**', component: HomeComponent}
 ];
