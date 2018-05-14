@@ -39,11 +39,14 @@
       </div>
       <div class="card-body">
         <div class="form-row">
-          <div class="form-group col-md-12">
+          <div class="input-group col-md-12">
             <input id="autocomplete" ngx-google-places-autocomplete class="form-control"
                    #placesRef="ngx-places"
                    [options]="googleOptions"
-                   (onAddressChange)="handleAddressChange($event)">
+                   (onAddressChange)="handleAddressChange($event)" formControlName="addressSearchToken">
+            <div class="input-group-append">
+              <button class="btn btn-secondary" type="button" (click)="resetAddress()"><i class="fa fa-recycle"></i> Reset</button>
+            </div>
           </div>
         </div>
         <div class="form-row">

@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Professional} from '../+models/professional';
-import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
 const httpOptions = {
@@ -20,18 +19,12 @@ export class ProfessionalsService {
     return this.http.get<Professional[]>(this.baseUrl + '/professionals');
   }
 
-  createProfessional(professional: Professional, user?: any) {
-    if (user) {
-      return this.http.post(this.baseUrl + '/professionals', professional, httpOptions).subscribe(data => {
-        const prof = data as Professional;
-        return this.http.post(this.baseUrl + '/professionals/' + prof.id + '/user', user, httpOptions);
-      }, error => {
-        console.log(error);
-        return Observable.of(null);
-      });
-    } else {
-      return this.http.post(this.baseUrl + '/professionals', professional, httpOptions);
-    }
+  createProfessional(professional: Professional) {
+    return this.http.post(this.baseUrl + '/professionals', professional, httpOptions);
+  }
+
+  addUserToProfessional(professionalId: number, user: any) {
+    return this.http.post(this.baseUrl + '/professionals/' + professionalId + '/user', user, httpOptions);
   }
 
   getProfessional(id: number) {
