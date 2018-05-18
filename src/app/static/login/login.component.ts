@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../+services/auth.service';
 import {User} from '../../+models/user';
 import {Router} from '@angular/router';
+import {ProfessionalListComponent} from '../../professionals/professional-list/professional-list.component';
 
 @Component({
   selector: 'app-login',
@@ -32,14 +33,18 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('token', data['token']);
       localStorage.setItem('user', JSON.stringify(data['user'] as User));
       this.router.navigate(['/dashboard']);
-    }, error => {
+    }, () => {
       this.alerts.push(
         {
           type: 'danger',
-          msg: 'Login failed' + error.message,
+          msg: 'Oops, login failed',
           dismissible: true
         }
       );
     });
+  }
+
+  onClosed(dismissedAlert: ProfessionalListComponent): void {
+    this.alerts = this.alerts.filter(alert => alert !== dismissedAlert);
   }
 }
