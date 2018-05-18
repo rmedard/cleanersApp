@@ -12,7 +12,7 @@ import {RouterModule} from '@angular/router';
 import {appRoutes} from './routes';
 import {ServiceCardComponent} from './services/service-card/service-card.component';
 import {ServiceListComponent} from './services/service-list/service-list.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ProfessionsComponent} from './professions/professions.component';
 import {ProfessionsService} from './+services/professions.service';
 import {ProfessionalsService} from './+services/professionals.service';
@@ -33,6 +33,7 @@ import {CustomersService} from './+services/customers.service';
 import { LoginComponent } from './static/login/login.component';
 import {AuthService} from './+services/auth.service';
 import {AuthGuardService} from './+guards/auth-guard.service';
+import {TokenInterceptorService} from './+resolvers/token-interceptor.service';
 
 
 @NgModule({
@@ -74,7 +75,12 @@ import {AuthGuardService} from './+guards/auth-guard.service';
     CustomersService,
     ProfessionalDetailResolver,
     AuthService,
-    AuthGuardService
+    AuthGuardService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
