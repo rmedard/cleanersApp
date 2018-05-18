@@ -22,4 +22,8 @@ export class CustomersService {
   addUserToCustomer(customerId: number, user: any) {
     return this.http.post(this.baseUrl + '/customers/' + customerId + '/user', user, httpOptions);
   }
+
+  getCustomers() {
+    return this.http.get<Customer[]>(this.baseUrl + '/customers');
+  }
 }

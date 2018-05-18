@@ -27,9 +27,12 @@ import { NavigationBarComponent } from './static/layout/navigation-bar/navigatio
 import { FooterComponent } from './static/layout/footer/footer.component';
 import {EmailsService} from './+services/emails.service';
 import {ProfessionalDetailResolver} from './+resolvers/professional-detail-resolver';
-import { RegisterComponent } from './static/register/register/register.component';
+import { RegisterComponent } from './static/register/register.component';
 import {GooglePlaceModule} from 'ngx-google-places-autocomplete';
 import {CustomersService} from './+services/customers.service';
+import { LoginComponent } from './static/login/login.component';
+import {AuthService} from './+services/auth.service';
+import {AuthGuardService} from './+guards/auth-guard.service';
 
 
 @NgModule({
@@ -51,6 +54,7 @@ import {CustomersService} from './+services/customers.service';
     NavigationBarComponent,
     FooterComponent,
     RegisterComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,14 +65,16 @@ import {CustomersService} from './+services/customers.service';
     AlertModule.forRoot(), ReactiveFormsModule, FormsModule,
     CarouselModule.forRoot(), CollapseModule.forRoot(),
     ButtonsModule.forRoot(),
-    GooglePlaceModule
+    GooglePlaceModule,
   ],
   providers: [
     ProfessionsService,
     ProfessionalsService,
     EmailsService,
     CustomersService,
-    ProfessionalDetailResolver
+    ProfessionalDetailResolver,
+    AuthService,
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })

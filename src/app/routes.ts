@@ -9,7 +9,9 @@ import {AboutComponent} from './static/about/about.component';
 import {ContactComponent} from './static/contact/contact.component';
 import {ProfessionalCardComponent} from './professionals/professional-card/professional-card.component';
 import {ProfessionalDetailResolver} from './+resolvers/professional-detail-resolver';
-import {RegisterComponent} from './static/register/register/register.component';
+import {RegisterComponent} from './static/register/register.component';
+import {LoginComponent} from './static/login/login.component';
+import {AuthGuardService} from './+guards/auth-guard.service';
 
 export const appRoutes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -22,10 +24,12 @@ export const appRoutes: Routes = [
       {path: 'professions', component: ProfessionsComponent},
       {path: 'professionals', component: ProfessionalListComponent},
       {path: 'professionals/:id', component: ProfessionalCardComponent, resolve: {professional: ProfessionalDetailResolver}},
-      {path: 'customers', component: CustomerListComponent},
+      {path: 'customers', component: CustomerListComponent,
+        runGuardsAndResolvers: 'always', canActivate: [AuthGuardService]},
       {path: 'services', component: ServiceListComponent},
     ]
   },
   {path: 'register', component: RegisterComponent},
+  {path: 'login', component: LoginComponent},
   {path: '**', component: HomeComponent}
 ];

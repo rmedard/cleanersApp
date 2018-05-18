@@ -43,14 +43,15 @@ export class HomeComponent implements OnInit {
       });
     });
 
-    if (window.navigator.geolocation) {
-      window.navigator.geolocation.getCurrentPosition(position => {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
-        console.log('Latitude: ' + latitude);
-        console.log('Longitude: ' + longitude);
-      });
-    }
+    // Get current user location
+    // if (window.navigator.geolocation) {
+    //   window.navigator.geolocation.getCurrentPosition(position => {
+    //     const latitude = position.coords.latitude;
+    //     const longitude = position.coords.longitude;
+    //     console.log('Latitude: ' + latitude);
+    //     console.log('Longitude: ' + longitude);
+    //   });
+    // }
   }
 
 }

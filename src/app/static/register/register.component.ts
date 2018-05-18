@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ProfessionalsService} from '../../../+services/professionals.service';
+import {ProfessionalsService} from '../../+services/professionals.service';
 import {Address} from 'ngx-google-places-autocomplete/objects/address';
-import {CustomersService} from '../../../+services/customers.service';
-import {Customer} from '../../../+models/customer';
-import {Address as UserAddress} from '../../../+models/address';
-import {Professional} from '../../../+models/professional';
+import {CustomersService} from '../../+services/customers.service';
+import {Customer} from '../../+models/customer';
+import {Address as UserAddress} from '../../+models/address';
+import {Professional} from '../../+models/professional';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   attachedUser: false;
   flavor: string;
-  googleOptions = '{types: [], componentRestrictions: { country: "BE" }}';
+  googleOptions = {types: [], componentRestrictions: { country: 'BE' }};
   alerts: any[] = [];
 
   constructor(private formBuilder: FormBuilder,

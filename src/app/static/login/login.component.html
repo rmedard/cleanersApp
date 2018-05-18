@@ -1,0 +1,29 @@
+<app-navigation-bar></app-navigation-bar>
+<div class="container" style="padding-top: 100px;">
+  <div class="text-center">
+    <img class="" src="../../../assets/logo.png" alt="">
+  </div>
+  <div class="card" id="login-card">
+    <div class="card-body">
+      <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <div class="form-group row">
+          <label for="inputEmail" class="col-sm-3 col-form-label">Email</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="inputEmail"
+                   placeholder="Username" formControlName="username">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword" class="col-sm-3 col-form-label">Password</label>
+          <div class="col-sm-9">
+            <input type="password" class="form-control" id="inputPassword"
+                   placeholder="Password" formControlName="password">
+          </div>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+      <a [routerLink]="['/register']" class="btn btn-lg btn-outline-success btn-block" style="margin-top: 20px">Register</a>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
