@@ -19,13 +19,12 @@ export const appRoutes: Routes = [
   {path: 'about', component: AboutComponent},
   {path: 'contact', component: ContactComponent},
   {
-    path: '', children: [
+    path: '', runGuardsAndResolvers: 'always', canActivate: [AuthGuardService], children: [
       {path: 'dashboard', component: DashboardComponent},
       {path: 'professions', component: ProfessionsComponent},
       {path: 'professionals', component: ProfessionalListComponent},
       {path: 'professionals/:id', component: ProfessionalCardComponent, resolve: {professional: ProfessionalDetailResolver}},
-      {path: 'customers', component: CustomerListComponent,
-        runGuardsAndResolvers: 'always', canActivate: [AuthGuardService]},
+      {path: 'customers', component: CustomerListComponent},
       {path: 'services', component: ServiceListComponent},
     ]
   },

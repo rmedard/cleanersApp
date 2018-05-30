@@ -62,7 +62,12 @@
               <td>{{ expertise.profession.category }}</td>
               <td>{{ expertise.unitPrice }} Euro</td>
               <td>
-                <button type="button" class="btn btn-outline-warning" (click)="openModal(true, template, expertise)">Edit</button>
+                <div class="btn-toolbar" role="toolbar">
+                  <div class="btn-group btn-group-sm mr-2" role="group" aria-label="Actions group">
+                    <a [routerLink]="['/professionals/' + professional.id]" class="btn btn-outline-warning">Edit</a>
+                    <button type="button" class="btn btn-outline-warning" (click)="openModal(true, template, expertise)">Commander</button>
+                  </div>
+                </div>
               </td>
             </tr>
             </tbody>
