@@ -16,7 +16,16 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ProfessionsComponent} from './professions/professions.component';
 import {ProfessionsService} from './+services/professions.service';
 import {ProfessionalsService} from './+services/professionals.service';
-import {AlertModule, BsDropdownModule, ButtonsModule, CarouselModule, CollapseModule, ModalModule} from 'ngx-bootstrap';
+import {
+  AlertModule,
+  BsDatepickerModule,
+  BsDropdownModule,
+  ButtonsModule,
+  CarouselModule,
+  CollapseModule,
+  ModalModule,
+  TimepickerModule
+} from 'ngx-bootstrap';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HomeComponent} from './static/home/home.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
@@ -66,6 +75,7 @@ import {TokenInterceptorService} from './+resolvers/token-interceptor.service';
     AlertModule.forRoot(), ReactiveFormsModule, FormsModule,
     CarouselModule.forRoot(), CollapseModule.forRoot(),
     ButtonsModule.forRoot(), BsDropdownModule.forRoot(),
+    BsDatepickerModule.forRoot(), TimepickerModule.forRoot(),
     GooglePlaceModule
   ],
   providers: [
