@@ -28,7 +28,14 @@ export class ProfessionalsService {
   }
 
   getProfessional(id: number) {
-    return this.http.get<Professional>(this.baseUrl + '/professionals/' + id);
+    return this.http.get(this.baseUrl + '/professionals/' + id).map((response: Response) => {
+      const professional = response as Professional;
+      professional.expertises.forEach(expertise => {
+        expertise.professional = {} as Professional;
+        expertise.professional.id = professional.id;
+      });
+      return professional;
+    });
   }
 
   grantExpertise(id: number, expertise: any) {

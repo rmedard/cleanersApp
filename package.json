@@ -24,10 +24,13 @@
     "@types/underscore": "^1.8.8",
     "angular-font-awesome": "^3.1.2",
     "angular2-jwt": "^0.2.3",
+    "bootstrap": "^4.1.1",
     "core-js": "^2.5.7",
     "font-awesome": "^4.7.0",
+    "moment": "^2.22.2",
     "ngx-bootstrap": "^2.0.5",
     "ngx-google-places-autocomplete": "^2.0.1",
+    "primeng": "^5.2.7",
     "rxjs": "^5.5.11",
     "underscore": "^1.9.0",
     "zone.js": "^0.8.19"

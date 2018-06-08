@@ -18,7 +18,6 @@ import {ProfessionsService} from './+services/professions.service';
 import {ProfessionalsService} from './+services/professionals.service';
 import {
   AlertModule,
-  BsDatepickerModule,
   BsDropdownModule,
   ButtonsModule,
   CarouselModule,
@@ -43,6 +42,9 @@ import { LoginComponent } from './static/login/login.component';
 import {AuthService} from './+services/auth.service';
 import {AuthGuardService} from './+guards/auth-guard.service';
 import {TokenInterceptorService} from './+resolvers/token-interceptor.service';
+import {CalendarModule, SelectButtonModule} from 'primeng/primeng';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {OrderService} from './+services/order.service';
 
 
 @NgModule({
@@ -75,7 +77,7 @@ import {TokenInterceptorService} from './+resolvers/token-interceptor.service';
     AlertModule.forRoot(), ReactiveFormsModule, FormsModule,
     CarouselModule.forRoot(), CollapseModule.forRoot(),
     ButtonsModule.forRoot(), BsDropdownModule.forRoot(),
-    BsDatepickerModule.forRoot(), TimepickerModule.forRoot(),
+    TimepickerModule.forRoot(), SelectButtonModule, CalendarModule, BrowserAnimationsModule,
     GooglePlaceModule
   ],
   providers: [
@@ -84,6 +86,7 @@ import {TokenInterceptorService} from './+resolvers/token-interceptor.service';
     EmailsService,
     CustomersService,
     ProfessionalDetailResolver,
+    OrderService,
     AuthService,
     AuthGuardService,
     {

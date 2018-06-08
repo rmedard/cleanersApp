@@ -180,8 +180,8 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  testBtn() {
-    console.log(this.registerForm.controls['flavor'].value);
+  onClosed(dismissedAlert: RegisterComponent): void {
+    this.alerts = this.alerts.filter(alert => alert !== dismissedAlert);
   }
 
   resetAddress() {

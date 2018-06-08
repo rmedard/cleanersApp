@@ -41,9 +41,49 @@
           </div>
         </div>
         <div class="col-md-9">
+          <form [formGroup]="orderForm" (ngSubmit)="onCreateOrder()" [collapse]="isOrderFormCollapsed">
+            <input type="hidden" formControlName="professionId">
+            <input type="hidden" formControlName="professionalId">
+            <div class="card">
+              <div class="card-header">
+                <strong>Commande: </strong> {{selectedExpertise?.profession.title}}
+              </div>
+              <div class="card-body">
+                <div class="form-row">
+                  <div class="form-group col-sm-4">
+                    <label for="orderDate">Début de service</label>
+                    <p-calendar formControlName="startTime" id="orderDate" [minDate]="minimumDate"></p-calendar>
+                  </div>
+                  <div class="form-group col-sm-4">
+                    <label for="orderTotal">Total</label><span id="orderTotal"> {{totalOrderPrice}} Euro</span>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-sm-12">
+                    <label for="orderHours">Heures</label>
+                    <p-selectButton [options]="hoursOptions" [formControl]="orderForm.controls['selectedHours']"
+                                    multiple="multiple" id="orderHours" (onChange)="onOrderHourChange()"></p-selectButton>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="row">
+                  <div class="col-md-6">
+                    <button class="form-control btn btn-sm btn-success" [disabled]="!orderForm.valid" id="btnCommander">Commander</button>
+                  </div>
+                  <div class="col-md-6">
+                    <button class="form-control btn btn-sm btn-warning" (click)="onOrderFormReset()">Annuler</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
           <nav class="navbar navbar-light bg-light">
             <span class="display-4">Expertise</span>
-            <button type="button" class="btn btn-success" (click)="openModal(false, template, null)"><i class="fa fa-plus-circle"></i> Add</button>
+            <button type="button" class="btn btn-success" (click)="openModal(false, template, null)"><i
+              class="fa fa-plus-circle"></i> Add
+            </button>
           </nav>
           <table class="table table-hover">
             <thead class="thead-dark">
@@ -65,7 +105,9 @@
                 <div class="btn-toolbar" role="toolbar">
                   <div class="btn-group btn-group-sm mr-2" role="group" aria-label="Actions group">
                     <a [routerLink]="['/professionals/' + professional.id]" class="btn btn-outline-warning">Edit</a>
-                    <button type="button" class="btn btn-outline-warning" (click)="openModal(true, template, expertise)">Commander</button>
+                    <button type="button" class="btn btn-outline-warning"
+                            (click)="onOrderBtnClick(expertise)">Commander
+                    </button>
                   </div>
                 </div>
               </td>

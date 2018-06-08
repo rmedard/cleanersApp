@@ -5,6 +5,7 @@ import {ProfessionalsService} from '../../+services/professionals.service';
 import * as _ from 'underscore';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Profession} from '../../+models/profession';
+import {SelectItem} from 'primeng/api';
 
 @Component({
   selector: 'app-home',
@@ -32,11 +33,9 @@ export class HomeComponent implements OnInit {
   orderModalRef: BsModalRef;
   minDate: Date = new Date();
   isMeridian = false;
-  options: any = {
-    hstep: [1, 2, 3],
-    mstep: [1, 5, 10, 15, 25, 30]
-  };
-  hours: number[];
+
+  hoursOptions: SelectItem[];
+
   orderedProfessional: Professional;
   totalOrderPrice: number;
 
@@ -55,7 +54,16 @@ export class HomeComponent implements OnInit {
       orderedTime: [new Date(), [Validators.required]],
       duration: [1, [Validators.required, Validators.min(1)]]
     });
-    this.hours = [1, 2, 3, 4, 5, 6, 7, 8];
+    this.hoursOptions = [
+      {label: '8:00-9:00', value: '8:00-9:00'},
+      {label: '9:00-10:00', value: '8:00-9:00'},
+      {label: '10:00-11:00', value: '8:00-9:00'},
+      {label: '11:00-12:00', value: '8:00-9:00'},
+      {label: '12:00-13:00', value: '8:00-9:00'},
+      {label: '13:00-14:00', value: '8:00-9:00'},
+      {label: '14:00-15:00', value: '8:00-9:00'},
+      {label: '15:00-16:00', value: '8:00-9:00'},
+    ];
     this.professionalsService.getProfessionals().subscribe(data => {
       this.professionals = data;
     }, () => {

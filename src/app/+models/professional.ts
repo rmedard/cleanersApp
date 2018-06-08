@@ -6,5 +6,5 @@ export interface Professional extends Person {
   id?: number;
   regNumber?: string;
   expertises?: Expertise[];
-  user: User;
+  user?: User;
 }

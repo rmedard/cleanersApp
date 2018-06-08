@@ -92,36 +92,10 @@
             </select>
           </div>
         </div>
-        <div class="form-group row">
-          <label for="startTime" class="col-form-label col-sm-4">Début de service</label>
-          <input id="startTime" class="form-control col-sm-4" [minDate]="minDate"
-                 #dpYMD="bsDatepicker" bsDatepicker formControlName="startTime"
-                 [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD, h:mm' }">
-          <timepicker formControlName="orderedTime" class="form-control col-sm-4"
-                      [showMeridian]="isMeridian" [hourStep]="1" [minuteStep]="30"></timepicker>
-        </div>
+
         <div class="form-group row">
           <div class="btn-group">
-            <label class="btn btn-primary" [(ngModel)]="hours[0]"
-                   btnCheckbox tabindex="0" role="button">08:00-09:00</label>
-            <label class="btn btn-primary" [(ngModel)]="hours[1]"
-                   btnCheckbox tabindex="0" role="button">09:00-10:00</label>
-            <label class="btn btn-primary" [(ngModel)]="hours[2]"
-                   btnCheckbox tabindex="0" role="button">10:00-11:00</label>
-            <label class="btn btn-primary" [(ngModel)]="hours[3]"
-                   btnCheckbox tabindex="0" role="button">11:00-12:00</label>
-            <label class="btn btn-primary" [(ngModel)]="hours[4]"
-                   btnCheckbox tabindex="0" role="button">12:00-13:00</label>
-            <label class="btn btn-primary" [(ngModel)]="hours[5]"
-                   btnCheckbox tabindex="0" role="button">13:00-14:00</label>
-            <label class="btn btn-primary" [(ngModel)]="hours[6]"
-                   btnCheckbox tabindex="0" role="button">14:00-15:00</label>
-            <label class="btn btn-primary" [(ngModel)]="hours[7]"
-                   btnCheckbox tabindex="0" role="button">15:00-16:00</label>
-            <label class="btn btn-primary" [(ngModel)]="hours[8]"
-                   btnCheckbox tabindex="0" role="button">16:00-17:00</label>
-            <label class="btn btn-primary" [(ngModel)]="hours[9]"
-                   btnCheckbox tabindex="0" role="button">17:00-18:00</label>
+            <p-selectButton [options]="hoursOptions" formControlName="selectedHours" class="form-control"></p-selectButton>
           </div>
         </div>
         <div class="form-group row">

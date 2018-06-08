@@ -9,6 +9,13 @@ import * as _ from 'underscore';
 import {Expertise} from '../../+models/expertise';
 import {Profession} from '../../+models/profession';
 import {ProfessionsService} from '../../+services/professions.service';
+import {SelectItem} from 'primeng/api';
+import {ServiceForCreate} from '../../+models/dto/service-for-create';
+import {ExpertiseForServiceCreate} from '../../+models/dto/expertise-for-service-create';
+import {AuthService} from '../../+services/auth.service';
+import {User} from '../../+models/user';
+import * as moment from 'moment';
+import {OrderService} from '../../+services/order.service';
 
 @Component({
   selector: 'app-professional-card',
@@ -17,6 +24,7 @@ import {ProfessionsService} from '../../+services/professions.service';
 })
 export class ProfessionalCardComponent implements OnInit {
 
+  minimumDate: Date = new Date();
   professional: Professional;
   professions: Profession[];
   dropDownProfessions: Profession[];
@@ -24,16 +32,26 @@ export class ProfessionalCardComponent implements OnInit {
   expertiseModalRef: BsModalRef;
   expertiseForm: FormGroup;
 
-  private selectedExpertise: Expertise;
+  orderForm: FormGroup;
+  isOrderFormCollapsed = true;
+  hoursOptions: SelectItem[];
+
+  selectedExpertise: Expertise;
+  totalOrderPrice: number;
+
+  loggedInUser: User;
 
   constructor(private route: ActivatedRoute,
               private professionalsService: ProfessionalsService,
               private modalService: BsModalService,
               private formBuilder: FormBuilder,
-              private professionsService: ProfessionsService) {
+              private professionsService: ProfessionsService,
+              private authService: AuthService,
+              private orderService: OrderService) {
   }
 
   ngOnInit() {
+    this.loggedInUser = this.authService.getLoggedInUser();
     this.route.data.subscribe(data => {
       this.professional = data['professional'];
     });
@@ -45,6 +63,24 @@ export class ProfessionalCardComponent implements OnInit {
         msg: error,
         dismissible: true
       });
+    });
+
+    this.hoursOptions = [];
+    this.hoursOptions.push({label: '8:00-9:00', value: 8});
+    this.hoursOptions.push({label: '9:00-10:00', value: 9});
+    this.hoursOptions.push({label: '10:00-11:00', value: 10});
+    this.hoursOptions.push({label: '11:00-12:00', value: 11});
+    this.hoursOptions.push({label: '12:00-13:00', value: 12});
+    this.hoursOptions.push({label: '13:00-14:00', value: 13});
+    this.hoursOptions.push({label: '14:00-15:00', value: 14});
+    this.hoursOptions.push({label: '15:00-16:00', value: 15});
+
+    this.orderForm = this.formBuilder.group({
+      professionId: ['', [Validators.required]],
+      professionalId: ['', [Validators.required]],
+      startTime: [new Date(), [Validators.required]],
+      orderedTime: [new Date(), [Validators.required]],
+      selectedHours: [[] as string[], [Validators.required, Validators.minLength(1)]]
     });
     this.expertiseForm = this.formBuilder.group({
       editMode: [false],
@@ -85,7 +121,6 @@ export class ProfessionalCardComponent implements OnInit {
         professionalId: this.professional.id,
         unitPrice: expertiseFormModal.rate
       };
-      console.log(expertise);
       this.professionalsService.updateExpertise(this.professional.id, expertise).subscribe(
         () => {
           const exp = _.findWhere(this.professional.expertises, {'profession': this.selectedExpertise.profession}) as Expertise;
@@ -130,5 +165,64 @@ export class ProfessionalCardComponent implements OnInit {
         }
       );
     }
+  }
+
+  onCreateOrder() {
+    if (this.loggedInUser.customerId > 0) {
+      const service = {
+        customerId: this.loggedInUser.customerId,
+        startTime: this.orderForm.controls['startTime'].value,
+        duration: (this.orderForm.controls['selectedHours'].value as string[]).length,
+        expertiseForServiceCreate: {
+          professionalId: this.orderForm.controls['professionalId'].value,
+          professionId: this.orderForm.controls['professionId'].value
+        } as ExpertiseForServiceCreate
+      } as ServiceForCreate;
+      console.log(service);
+      this.orderService.createOrder(service).subscribe(() => {
+        this.alerts.push({
+          type: 'success',
+          msg: 'Votre commande est réussie',
+          dismissible: true
+        });
+      }, error => {
+        this.alerts.push({
+          type: 'danger',
+          msg: 'Erreur: ' + error.error,
+          dismissible: true
+        });
+      });
+    } else {
+      this.alerts.push({
+        type: 'danger',
+        msg: 'Vous n\'avez pas de compte client!!',
+        dismissible: true
+      });
+    }
+  }
+
+  onOrderBtnClick(expertise: Expertise) {
+    this.isOrderFormCollapsed = false;
+    this.selectedExpertise = expertise;
+    this.orderForm.controls['professionId'].setValue(expertise.profession.id);
+    this.orderForm.controls['professionalId'].setValue(expertise.professional.id);
+    const selectedHours = this.orderForm.controls['selectedHours'].value as string[];
+    this.totalOrderPrice = selectedHours.length * expertise.unitPrice;
+  }
+
+  onOrderFormReset() {
+    this.isOrderFormCollapsed = true;
+    this.orderForm.reset({'selectedHours': []});
+  }
+
+  onOrderHourChange() {
+    const selectedHours = this.orderForm.controls['selectedHours'].value as number[];
+    const startDate = this.orderForm.controls['startTime'].value as Date;
+    const startTime = Math.min(... selectedHours) + ':00';
+    const momentTime = moment(startTime, 'HH:mm');
+    startDate.setHours(momentTime.hours());
+    startDate.setMinutes(momentTime.minutes());
+    this.orderForm.controls['startTime'].setValue(startDate);
+    this.totalOrderPrice = (this.orderForm.controls['selectedHours'].value as string[]).length * this.selectedExpertise.unitPrice;
   }
 }
