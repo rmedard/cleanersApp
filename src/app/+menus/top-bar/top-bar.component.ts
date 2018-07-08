@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../../+services/auth.service';
 
@@ -12,7 +12,8 @@ export class TopBarComponent implements OnInit {
   title = 'Cleaners App';
   loggedInUsername = '';
 
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService) {
+  }
 
   ngOnInit() {
     this.loggedInUsername = this.authService.getLoggedInUser().username;
@@ -21,5 +22,9 @@ export class TopBarComponent implements OnInit {
   logout() {
     localStorage.clear();
     this.router.navigate(['/home']);
+  }
+
+  viewProfile() {
+    this.router.navigate(['/profile']);
   }
 }

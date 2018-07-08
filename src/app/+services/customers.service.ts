@@ -19,6 +19,10 @@ export class CustomersService {
     return this.http.post(this.baseUrl + '/customers', customer, httpOptions);
   }
 
+  getCustomer(customerId: number) {
+    return this.http.get<Customer>(this.baseUrl + '/customers/' + customerId, httpOptions);
+  }
+
   addUserToCustomer(customerId: number, user: any) {
     return this.http.post(this.baseUrl + '/customers/' + customerId + '/user', user, httpOptions);
   }

@@ -4,6 +4,7 @@ import {AuthService} from '../../+services/auth.service';
 import {User} from '../../+models/user';
 import {Router} from '@angular/router';
 import {ProfessionalListComponent} from '../../professionals/professional-list/professional-list.component';
+import * as _ from 'underscore';
 
 @Component({
   selector: 'app-login',
@@ -30,9 +31,14 @@ export class LoginComponent implements OnInit {
       'username': this.loginForm.controls['username'].value,
       'password': this.loginForm.controls['password'].value
     }).subscribe(data => {
+      const loggedInUser = data['user'] as User;
       localStorage.setItem('token', data['token']);
-      localStorage.setItem('user', JSON.stringify(data['user'] as User));
-      this.router.navigate(['/dashboard']);
+      localStorage.setItem('user', JSON.stringify(loggedInUser));
+      if (_.contains(loggedInUser.roles, 'ADMIN')) {
+        this.router.navigate(['/dashboard']);
+      } else {
+        this.router.navigate(['/profile']);
+      }
     }, () => {
       this.alerts.push(
         {

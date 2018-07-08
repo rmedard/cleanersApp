@@ -12,15 +12,18 @@ import {ProfessionalDetailResolver} from './+resolvers/professional-detail-resol
 import {RegisterComponent} from './static/register/register.component';
 import {LoginComponent} from './static/login/login.component';
 import {AuthGuardService} from './+guards/auth-guard.service';
+import {AdminGuard} from './+guards/admin.guard';
+import {ProfileComponent} from './profile/profile.component';
 
 export const appRoutes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'about', component: AboutComponent},
   {path: 'contact', component: ContactComponent},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuard]},
   {
     path: '', runGuardsAndResolvers: 'always', canActivate: [AuthGuardService], children: [
-      {path: 'dashboard', component: DashboardComponent},
+      {path: 'profile', component: ProfileComponent},
       {path: 'professions', component: ProfessionsComponent},
       {path: 'professionals', component: ProfessionalListComponent},
       {path: 'professionals/:id', component: ProfessionalCardComponent, resolve: {professional: ProfessionalDetailResolver}},

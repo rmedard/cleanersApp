@@ -45,6 +45,8 @@ import {TokenInterceptorService} from './+resolvers/token-interceptor.service';
 import {CalendarModule, SelectButtonModule} from 'primeng/primeng';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {OrderService} from './+services/order.service';
+import {AdminGuard} from './+guards/admin.guard';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -67,6 +69,7 @@ import {OrderService} from './+services/order.service';
     FooterComponent,
     RegisterComponent,
     LoginComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,6 +92,7 @@ import {OrderService} from './+services/order.service';
     OrderService,
     AuthService,
     AuthGuardService,
+    AdminGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

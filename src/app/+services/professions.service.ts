@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Profession} from '../+models/profession';
@@ -12,7 +12,8 @@ export class ProfessionsService {
 
   baseUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getProfessions() {
     return this.http.get<Profession[]>(this.baseUrl + '/professions');
