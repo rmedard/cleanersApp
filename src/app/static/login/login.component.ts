@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
       const loggedInUser = data['user'] as User;
       localStorage.setItem('token', data['token']);
       localStorage.setItem('user', JSON.stringify(loggedInUser));
+      console.log(loggedInUser.roles);
       if (_.contains(loggedInUser.roles, 'ADMIN')) {
         this.router.navigate(['/dashboard']);
       } else {

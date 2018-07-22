@@ -99,7 +99,7 @@ export class RegisterComponent implements OnInit {
         phone: this.registerForm.controls['phone'].value,
         address: {
           commune: this.registerForm.controls['commune'].value,
-          zipcode: this.registerForm.controls['zipcode'].value,
+          zipcode: this.registerForm.controls['zipCode'].value,
           street: this.registerForm.controls['street'].value,
           number: this.registerForm.controls['houseNumber'].value
         } as UserAddress
