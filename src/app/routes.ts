@@ -5,6 +5,7 @@ import {ServiceListComponent} from './services/service-list/service-list.compone
 import {ProfessionsComponent} from './professions/professions.component';
 import {HomeComponent} from './static/home/home.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
+import {CommandesComponent} from './commandes/commandes.component';
 import {AboutComponent} from './static/about/about.component';
 import {ContactComponent} from './static/contact/contact.component';
 import {ProfessionalCardComponent} from './professionals/professional-card/professional-card.component';
@@ -20,6 +21,7 @@ export const appRoutes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'about', component: AboutComponent},
   {path: 'contact', component: ContactComponent},
+  {path: 'commandes/:id', component: CommandesComponent, resolve: {professional: ProfessionalDetailResolver}},
   {path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuard]},
   {
     path: '', runGuardsAndResolvers: 'always', canActivate: [AuthGuardService], children: [

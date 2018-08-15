@@ -1,4 +1,5 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
+import {Router} from '@angular/router'
 import {BsModalRef, BsModalService, CarouselConfig} from 'ngx-bootstrap';
 import {Professional} from '../../+models/professional';
 import {ProfessionalsService} from '../../+services/professionals.service';
@@ -43,7 +44,7 @@ export class HomeComponent implements OnInit {
     return _.uniq(_.pluck(_.map(professional.expertises, data => data.profession), 'category'));
   }
 
-  constructor(private professionalsService: ProfessionalsService, private formBuilder: FormBuilder, private modalService: BsModalService) {
+  constructor(private professionalsService: ProfessionalsService, private formBuilder: FormBuilder, private modalService: BsModalService, private router: Router) {
   }
 
   ngOnInit() {
@@ -89,12 +90,19 @@ export class HomeComponent implements OnInit {
 
   }
 
+  toCommand(professional: Professional) {
+    this.orderedProfessional = professional;
+    this.dropDownProfessions = _.map(professional.expertises, data => data.profession);
+    this.router.navigate(['commandes', {mode: 'test'}]);
+  }
+
   openOrderModal(template: TemplateRef<any>, professional: Professional) {
     this.orderedProfessional = professional;
     this.dropDownProfessions = _.map(professional.expertises, data => data.profession);
-    this.onProfessionChange(this.dropDownProfessions[0].id);
+    // debugger;
+    //this.onProfessionChange(this.dropDownProfessions[0].id);
     // this.orderForm.controls['professionId'].setValue(this.dropDownProfessions[0].id);
-    this.orderModalRef = this.modalService.show(template);
+    //this.orderModalRef = this.modalService.show(template);
   }
 
   onProfessionChange($event) {

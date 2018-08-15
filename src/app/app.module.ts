@@ -16,8 +16,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ProfessionsComponent} from './professions/professions.component';
 import {ProfessionsService} from './+services/professions.service';
 import {ProfessionalsService} from './+services/professionals.service';
-import {
-  AlertModule,
+import { AlertModule,
   BsDropdownModule,
   ButtonsModule,
   CarouselModule,
@@ -28,6 +27,7 @@ import {
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HomeComponent} from './static/home/home.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
+import {CommandesComponent} from './commandes/commandes.component';
 import {TopBarComponent} from './+menus/top-bar/top-bar.component';
 import {AboutComponent} from './static/about/about.component';
 import {ContactComponent} from './static/contact/contact.component';
@@ -62,6 +62,7 @@ import { ProfileComponent } from './profile/profile.component';
     ProfessionsComponent,
     HomeComponent,
     DashboardComponent,
+    CommandesComponent,
     TopBarComponent,
     AboutComponent,
     ContactComponent,

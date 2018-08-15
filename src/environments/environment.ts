@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:5000/api',
+  apiUrl: 'http://localhost:56364/api',
   appEmail: 'rmedard5@gmail.com'
 };
