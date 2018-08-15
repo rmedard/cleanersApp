@@ -86,42 +86,6 @@ export class HomeComponent implements OnInit {
     // }
   }
 
-  onCreateOrder() {
 
-  }
 
-  toCommand(professional: Professional) {
-    this.orderedProfessional = professional;
-    this.dropDownProfessions = _.map(professional.expertises, data => data.profession);
-    this.router.navigate(['commandes', {mode: 'test'}]);
-  }
-
-  openOrderModal(template: TemplateRef<any>, professional: Professional) {
-    this.orderedProfessional = professional;
-    this.dropDownProfessions = _.map(professional.expertises, data => data.profession);
-    // debugger;
-    //this.onProfessionChange(this.dropDownProfessions[0].id);
-    // this.orderForm.controls['professionId'].setValue(this.dropDownProfessions[0].id);
-    //this.orderModalRef = this.modalService.show(template);
-  }
-
-  onProfessionChange($event) {
-    this.orderForm.controls['professionId'].setValue($event as number);
-    const duration = this.orderForm.controls['duration'].value;
-    if (duration as number > 0) {
-      this.totalOrderPrice = _.findWhere(this.orderedProfessional.expertises, {'professionId': $event}).unitPrice * duration;
-    } else {
-      this.totalOrderPrice = 0;
-    }
-  }
-
-  onDurationChange(value: any) {
-    const duration = value as number;
-    const professionId = this.orderForm.controls['professionId'].value;
-    if (duration as number > 0) {
-      this.totalOrderPrice = _.findWhere(this.orderedProfessional.expertises, {'professionId': professionId}).unitPrice * duration;
-    } else {
-      this.totalOrderPrice = 0;
-    }
-  }
 }
